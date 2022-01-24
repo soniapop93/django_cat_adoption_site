@@ -14,4 +14,4 @@ class CatAdmin(admin.ModelAdmin):
     search_fields = ['cat_name_text']
 
 admin.site.register(Cat, CatAdmin)
-# admin.site.register(Cat_Details)
+

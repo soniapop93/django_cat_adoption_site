@@ -1,0 +1,6 @@
+<h1>{{ cat.cat_text }}</h1>
+<ul>
+{% for detail in cat.cat_details_set.all %}
+  <li>{{ cat_details.cat_text }}</li>
+{% endfor %}
+</ul>
