@@ -1,6 +1,40 @@
-<h1>{{ cat.cat_text }}</h1>
-<ul>
-{% for detail in cat.cat_details_set.all %}
-  <li>{{ cat_details.cat_text }}</li>
-{% endfor %}
-</ul>
+<!--<h1>{{ cat.cat_text }}</h1>-->
+<!--<ul>-->
+<!--{% for detail in cat.cat_details_set.all %}-->
+<!--  <li>{{ cat_details.cat_id }}</li>-->
+<!--{% endfor %}-->
+<!--</ul>-->
+<!--<i>{{ cat.cat_name_text }}</i>-->
+<!--says-->
+<!--<i>{{ cat_details.description_text }}</i>-->
+
+<!doctype html>
+<html>
+  <style>
+    body {
+      background-size: 100% 100%;
+      background: rgb(78,78,78);
+      background: linear-gradient(180deg, rgba(78,78,78,1) 0%, rgba(177,177,177,0) 50%, rgba(223,223,223,1) 100%);
+    }
+    img {
+      width: 25%;
+      height: 25%;
+      margin: 3%;
+    }
+    .flex-box {
+      display: flex;
+    }
+    .details {
+      flex: 1;
+    }
+  </style>
+
+  <body>
+    <div class="flex-box">
+      <img class="details" src="https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg"/>
+      <div class="details">
+        <h1>Holding grudges</h1>
+      </div>
+    </div>
+  </body>
+</html>
