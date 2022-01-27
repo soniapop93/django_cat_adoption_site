@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from email.policy import default
 from django.db import models
 import datetime
@@ -20,6 +21,7 @@ class Cat_Details(models.Model):
     description_text = models.CharField(max_length=200)
     age = models.IntegerField(default=0)
     location = models.CharField(max_length=200)
+    cat_photo = models.ImageField(upload_to='adoptions/', default='static/adoptions/cat_static.jpg')
 
     def __str__(self):
         return self.description_text
