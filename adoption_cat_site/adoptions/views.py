@@ -1,9 +1,17 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Cat, Cat_Details
 
+class CatWithPhoto:
+    def __init__(self, cat_object, cat_image):
+        self.cat_obj = cat_object
+        self.cat_img = cat_image
 
 def index(request):
-    latest_cat_list = Cat.objects.order_by('-pub_date')
+    latest_cat_list = []
+    cat_list = Cat.objects.order_by('-pub_date')
+    for cat in cat_list:
+        cat_details = Cat_Details.objects.get(details=cat.pk)
+        latest_cat_list.append(CatWithPhoto(cat, cat_details.cat_photo))
     context = {
         'latest_cat_list': latest_cat_list,
     }
