@@ -1,14 +1,6 @@
-<!--<h1>{{ cat.cat_text }}</h1>-->
-<!--<ul>-->
-<!--{% for detail in cat.cat_details_set.all %}-->
-<!--  <li>{{ cat_details.cat_id }}</li>-->
-<!--{% endfor %}-->
-<!--</ul>-->
-<!--<i>{{ cat.cat_name_text }}</i>-->
-<!--says-->
-<!--<i>{{ cat_details.description_text }}</i>-->
 <!doctype html>
 <html>
+{% include "adoptions/base.html" %}
   <style>
     body {
       background-size: 100% 100%;
@@ -105,4 +97,5 @@
       </div>
     </div>
   </body>
+{% include "adoptions/footer.html" %}
 </html>
