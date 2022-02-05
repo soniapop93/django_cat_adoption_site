@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from .models import Cat, Cat_Details
 
 class CatWithPhoto:
@@ -21,3 +21,6 @@ def detail(request, cat_id):
     cat = Cat.objects.get(pk=cat_id)
     cat_details = Cat_Details.objects.get(details=cat.pk)
     return render(request, 'adoptions/detail.html', {'cat':cat, 'cat_details':cat_details})
+
+def contact(request):
+    return render(request, 'adoptions/contact.html')

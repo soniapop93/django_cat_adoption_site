@@ -5,4 +5,5 @@ app_name= 'adoptions'
 urlpatterns = [
     path('',views.index, name='index'),
     path('<int:cat_id>/', views.detail, name='detail' ),
+    path('contact/', views.contact, name='contact'),
 ]
