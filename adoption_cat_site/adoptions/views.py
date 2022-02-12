@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Cat, Cat_Details
+from users import views
 
 class CatWithPhoto:
     def __init__(self, cat_object, cat_image):
@@ -24,3 +25,6 @@ def detail(request, cat_id):
 
 def contact(request):
     return render(request, 'adoptions/contact.html')
+
+def recently_adopted(request):
+    return render(request,'adoptions/recently_adopted.html')
