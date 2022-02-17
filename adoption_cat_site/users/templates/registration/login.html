@@ -1,19 +1,40 @@
-
-<!-- registration/login.html -->
-
-{% block title %}Login{% endblock %}
-
+<!doctype html>
+<html>
+{% include "adoptions/base.html" %}
 {% block content %}
-  <h2>Login</h2>
-  
-    <form method="post">
+<style>
+    h1{
+    padding: 3%;
+    }
+    .login {
+    padding: 3%;
+    }
+    .submit {
+    margin-top: -5%;
+    padding: 3%;
+    }
+</style>
+<body>
+
+<div class="login">
+  <h1>Login</h1>
+  <form method="post">
       {% csrf_token %}
-      <table>
-        {{ form.as_p }}
-        <tr>
-          <td>&nbsp;</td>
-          <td><input type="submit" value="Submit"></td>
-        </tr>                
-      </table>
+      <div class="login">
+        <p><strong>Username: </strong></p>
+        <p> {{ form.username }}</p>
+        <p><strong>Password: </strong> </p>
+        <p>{{ form.password }}</p>
+      </div>
+      <div class="submit">
+          <input type="submit" value="Submit">
+      </div>
     </form>
+  <br>
+<a href="{% url 'adoptions:index' %}">Back to home page</a>
 {% endblock %}
+</div>
+
+</body>
+{% include "adoptions/footer.html" %}
+</html>
