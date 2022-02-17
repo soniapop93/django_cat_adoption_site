@@ -1,6 +1,17 @@
 from django.db import models
 import datetime
 from django.utils import timezone
+import random
+import string
+
+
+def rename_upload_photo(instance, filename):
+    filename_splited = filename.split(".")
+    photo_extension = filename_splited[1]
+    new_filename = ""
+    for letter in filename_splited[0]:
+        new_filename += random.choice(string.ascii_letters)
+    return "adoptions/" + new_filename + "." + photo_extension
 
 class Cat(models.Model):
     cat_name_text = models.CharField(max_length=50)
@@ -15,11 +26,12 @@ class Cat(models.Model):
     
 
 class Cat_Details(models.Model):
+
     details = models.ForeignKey(Cat, on_delete=models.CASCADE)
     description_text = models.CharField(max_length=200)
     age = models.IntegerField(default=0)
     location = models.CharField(max_length=200)
-    cat_photo = models.ImageField(upload_to='adoptions/', default='static/adoptions/cat_static.jpg')
+    cat_photo = models.ImageField(upload_to=rename_upload_photo, default='static/adoptions/cat_static.jpg')
 
     def __str__(self):
         return self.description_text
