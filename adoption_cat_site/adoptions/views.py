@@ -28,3 +28,8 @@ def contact(request):
 
 def recently_adopted(request):
     return render(request,'adoptions/recently_adopted.html')
+
+def adopt_cat(request, cat_id):
+    cat = Cat.objects.get(pk=cat_id)
+    cat_details = Cat_Details.objects.get(details=cat.pk)
+    return render(request, 'adoptions/adopt_cat.html', {'cat':cat, 'cat_details':cat_details})

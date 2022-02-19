@@ -2,20 +2,22 @@
 {% load static %}
 <html lang="en">
 {% include "adoptions/base.html" %}
-
+<style>
+  .date_published{
+    color: grey;
+    font-size: 75%;
+  }
+</style>
 <body>
 <main>
 
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        
         <h1 class="fw-light">Recently Adopted Cats</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        
+        <p class="lead text-muted">Check the recently adopted cats</p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          <a href="{% url 'adoptions:recently-adopted' %}" class="btn btn-success my-2">Adopted cats</a>
         </p>
       </div>
     </div>
@@ -35,6 +37,7 @@
                     <div class="btn-group">
                       <a href="/cats/{{ cat.cat_obj.id }}/" class="btn btn-sm btn-outline-secondary">View</a>
                     </div>
+                    <p class="date_published"><b>{{ cat.cat_obj.pub_date }}</b></p>
                   </div>
                 </div>
               </div>
