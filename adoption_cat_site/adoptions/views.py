@@ -10,9 +10,10 @@ class CatWithPhoto:
 def index(request):
     latest_cat_list = []
     cat_list = Cat.objects.order_by('-pub_date')
-    for cat in cat_list:
+    for cat in cat_list.reverse():
         cat_details = Cat_Details.objects.get(details=cat.pk)
         latest_cat_list.append(CatWithPhoto(cat, cat_details.cat_photo))
+
     context = {
         'latest_cat_list': latest_cat_list,
     }
