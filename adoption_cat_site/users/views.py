@@ -1,15 +1,7 @@
-# from django.shortcuts import render, redirect
-#
-#
-# def signup(request):
-#     return render(request)
-
-
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
 
 
-# Create your views here.
 def signup(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
@@ -21,4 +13,11 @@ def signup(response):
         form = RegisterForm()
 
     return render(response, "registration/signup.html", {"form":form})
+
+
+def profile(response):
+    if response.user.is_authenticated:
+        return render(response, "users/profile.html")
+    else:
+        return redirect('/accounts/login')
 

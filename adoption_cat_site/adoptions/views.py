@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Cat, Cat_Details
 from users import views
 
@@ -33,4 +33,7 @@ def recently_adopted(request):
 def adopt_cat(request, cat_id):
     cat = Cat.objects.get(pk=cat_id)
     cat_details = Cat_Details.objects.get(details=cat.pk)
-    return render(request, 'adoptions/adopt_cat.html', {'cat':cat, 'cat_details':cat_details})
+    if request.user.is_authenticated:
+        return render(request, 'adoptions/adopt_cat.html', {'cat':cat, 'cat_details':cat_details})
+    else:
+        return redirect('/accounts/login')
