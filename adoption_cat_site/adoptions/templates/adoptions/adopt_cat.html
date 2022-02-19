@@ -9,11 +9,24 @@
   }
 </style>
 <body>
+<div class="container">
+<form>
+  <label for="fname">Do you want to adopt this cat?</label><br>
+  <input type="radio" id="fname" name="confirm"> Yes <br>
+  <input type="radio" id="fname" name="confirm"> No <br>
+  <br>
+  <label for="fname">Have you adopted a cat in the past?</label><br>
+  <input type="radio" id="fname" name="cat"> Yes <br>
+  <input type="radio" id="fname" name="cat"> No <br>
+   <br>
+  <label for="lname">Please add other details here:</label><br>
+  <input type="text" id="lname" name="lname" value=""><br><br>
+  <input type="submit" value="Submit">
+</form>
+</div>
 <main>
 </main>
 <div ></div>
-
-
 {% include "adoptions/footer.html" %}
 </body>
 </html>
