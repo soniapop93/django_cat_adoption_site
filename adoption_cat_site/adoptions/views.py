@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Cat, Cat_Details
 from .forms import CatAdoptionForm
+from django.utils import timezone
 from users import views
 
 class CatWithPhoto:
@@ -10,7 +11,7 @@ class CatWithPhoto:
 
 def index(request):
     latest_cat_list = []
-    cat_list = Cat.objects.order_by('-pub_date')
+    cat_list = Cat.objects.filter(adopted=False).order_by('-pub_date')
     for cat in cat_list.reverse():
         cat_details = Cat_Details.objects.get(details=cat.pk)
         latest_cat_list.append(CatWithPhoto(cat, cat_details.cat_photo))
@@ -39,13 +40,43 @@ def adopt_cat(request, cat_id):
     cat = Cat.objects.get(pk=cat_id)
     cat_details = Cat_Details.objects.get(details=cat.pk)
     if request.method == "POST":
-        print(request.POST["had_a_cat"])
         print(request.POST["want_the_cat"])
+        print(request.POST["had_a_cat"])
         print(request.POST["keep_in_contact"])
         print(request.POST["other_mentions"])
+        want_the_cat = request.POST["want_the_cat"]
+        if str(want_the_cat) != "1":
+            print("Do not want the cat?")
+            return redirect('/cats')
 
-
+        cat.adopted = True
+        cat.adoption_date = timezone.now()
+        cat.human = request.user
+        cat.save()
 
         return redirect('/cats')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return render(request, 'adoptions/adopt_cat.html', {'cat':cat, 'cat_details':cat_details, 'form':form})

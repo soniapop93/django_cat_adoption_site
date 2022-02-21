@@ -3,7 +3,7 @@ import datetime
 from django.utils import timezone
 import random
 import string
-
+from users.forms import User
 
 def rename_upload_photo(instance, filename):
     filename_splited = filename.split(".")
@@ -16,6 +16,9 @@ def rename_upload_photo(instance, filename):
 class Cat(models.Model):
     cat_name_text = models.CharField(max_length=50)
     pub_date = models.DateTimeField('date published')
+    adoption_date = models.DateTimeField('date adopted', default=timezone.now())
+    adopted = models.BooleanField(default=False)
+    human = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.cat_name_text

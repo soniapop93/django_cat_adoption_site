@@ -6,9 +6,10 @@ class ChoiceInline(admin.TabularInline):
     extra = 0
 
 class CatAdmin(admin.ModelAdmin):
-    fieldsets = [(None, {'fields': ['cat_name_text']}),('Date information', {'fields': ['pub_date']}),]
+    fieldsets = [(None, {'fields': ['cat_name_text']}),('Date information', {'fields': ['pub_date']}),
+                 ("Adoption information", {'fields': ['adopted', 'adoption_date', 'human']})]
 
-    inlines =  [ChoiceInline]
+    inlines = [ChoiceInline]
     list_display = ('cat_name_text', 'pub_date')
     list_filter = ['pub_date']
     search_fields = ['cat_name_text']
