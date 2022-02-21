@@ -20,4 +20,3 @@ def profile(response):
         return render(response, "users/profile.html")
     else:
         return redirect('/accounts/login')
-
