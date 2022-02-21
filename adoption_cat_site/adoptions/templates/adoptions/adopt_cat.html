@@ -10,6 +10,14 @@
 </style>
 <body>
 <div class="container">
+
+  <form action="/cats/{{ cat.id }}/adopt-cat/" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <br />
+      <input type="submit" value="Adopt" />
+  </form>
+
 <form>
   <label for="fname">Do you want to adopt this cat?</label><br>
   <input type="radio" id="fname" name="confirm"> Yes <br>

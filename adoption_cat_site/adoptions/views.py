@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Cat, Cat_Details
+from .forms import CatAdoptionForm
 from users import views
 
 class CatWithPhoto:
@@ -31,9 +32,20 @@ def recently_adopted(request):
     return render(request,'adoptions/recently_adopted.html')
 
 def adopt_cat(request, cat_id):
+    if not request.user.is_authenticated:
+        return redirect('/accounts/login')
+
+    form = CatAdoptionForm()
     cat = Cat.objects.get(pk=cat_id)
     cat_details = Cat_Details.objects.get(details=cat.pk)
-    if request.user.is_authenticated:
-        return render(request, 'adoptions/adopt_cat.html', {'cat':cat, 'cat_details':cat_details})
-    else:
-        return redirect('/accounts/login')
+    if request.method == "POST":
+        print(request.POST["had_a_cat"])
+        print(request.POST["want_the_cat"])
+        print(request.POST["keep_in_contact"])
+        print(request.POST["other_mentions"])
+
+
+
+        return redirect('/cats')
+
+    return render(request, 'adoptions/adopt_cat.html', {'cat':cat, 'cat_details':cat_details, 'form':form})
