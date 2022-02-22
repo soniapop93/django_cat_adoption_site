@@ -48,6 +48,11 @@
             <p><b>E-mail: {{ user.email }}</b></p><p></p>
             <img class="logo_cat_site" src="{% static 'adoptions/cat_logo_no_background.png' %}"/>
           </div>
+          <div class="adopted-cats">
+              {% for cat in cats %}
+              <p>{{ cat.cat_name_text }}</p>
+              {% endfor %}
+          </div>
       </div>
       <div class="image-adopt">
         <img class="logo" src="{% static 'adoptions/logo_adopt_cat.png' %}"/>

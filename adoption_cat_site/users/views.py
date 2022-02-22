@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
-
+from adoptions.models import Cat
 
 def signup(response):
     if response.method == "POST":
@@ -17,6 +17,7 @@ def signup(response):
 
 def profile(response):
     if response.user.is_authenticated:
-        return render(response, "users/profile.html")
+        cats = Cat.objects.filter(human=response.user)
+        return render(response, "users/profile.html", {'cats':cats})
     else:
         return redirect('/accounts/login')
