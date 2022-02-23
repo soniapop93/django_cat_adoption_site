@@ -11,13 +11,22 @@ class CatWithPhoto:
 
 def index(request):
     latest_cat_list = []
-    cat_list = Cat.objects.filter(adopted=False).order_by('-pub_date')
-    for cat in cat_list.reverse():
+    cat_list = Cat.objects.filter(adopted=False).order_by('pub_date')
+    for cat in cat_list:
         cat_details = Cat_Details.objects.get(details=cat.pk)
         latest_cat_list.append(CatWithPhoto(cat, cat_details.cat_photo))
 
+    adopted_cat_list = []
+    adopted_cats = Cat.objects.filter(adopted=True).order_by('-adoption_date')
+    for cat in adopted_cats:
+        cat_details = Cat_Details.objects.get(details=cat.pk)
+        adopted_cat_list.append(CatWithPhoto(cat, cat_details.cat_photo))
+        if len(adopted_cat_list) == 3:
+            break
+
     context = {
         'latest_cat_list': latest_cat_list,
+        'adopted_cat_list': adopted_cat_list,
     }
     return render(request,'adoptions/index.html', context)
 
@@ -55,28 +64,5 @@ def adopt_cat(request, cat_id):
         cat.save()
 
         return redirect('/cats')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return render(request, 'adoptions/adopt_cat.html', {'cat':cat, 'cat_details':cat_details, 'form':form})

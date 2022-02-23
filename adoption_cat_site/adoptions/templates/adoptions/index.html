@@ -16,6 +16,7 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Recently Adopted Cats</h1>
         <p class="lead text-muted">Check the recently adopted cats</p>
+        {% include "adoptions/adopted_carousel.html" %}
         <p>
           <a href="{% url 'adoptions:recently-adopted' %}" class="btn btn-success my-2">Adopted cats</a>
         </p>
