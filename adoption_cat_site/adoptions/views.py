@@ -39,7 +39,13 @@ def contact(request):
     return render(request, 'adoptions/contact.html')
 
 def recently_adopted(request):
-    return render(request,'adoptions/recently_adopted.html')
+    adopted_cat_list = []
+    adopted_cats = Cat.objects.filter(adopted=True).order_by('-adoption_date')
+    for cat in adopted_cats:
+        cat_details = Cat_Details.objects.get(details=cat.pk)
+        adopted_cat_list.append(CatWithPhoto(cat, cat_details.cat_photo))
+    return render(request,'adoptions/recently_adopted.html', {'adopted_cat_list': adopted_cat_list})
+
 
 def adopt_cat(request, cat_id):
     if not request.user.is_authenticated:

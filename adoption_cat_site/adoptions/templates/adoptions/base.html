@@ -93,6 +93,9 @@
           <img class="logo_site" src="{% static 'adoptions/cat_logo_no_background.png' %}"/>
           <strong>Home</strong>
         </a>
+         <a href="{% url 'adoptions:recently-adopted' %}" class="navbar-brand d-flex align-items-center">
+         <strong>Adopted cats</strong>
+         </a>
         {% if request.user.is_authenticated %}
           <a href="{% url 'logout' %}" class="navbar-brand d-flex align-items-center">
           <strong>Logout</strong>

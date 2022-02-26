@@ -36,27 +36,42 @@
         text-shadow: black;
         box-sizing: border-box;
     }
+    .adopted-cats {
+        padding: 1%;
+        margin: 5%;
+        width: 40%;
+        height: 50%;
+        border: 1px solid green;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);;
+        text-shadow: black;
+        box-sizing: border-box;
+    }
 </style>
 <body>
 <h1>Profile</h1>
     <div class="flex-box">
       <div class="text_area">
           <div class="text">
-            <p><b>First name: {{ user.last_name }}</b></p><p></p>
-            <p><b>Last name: {{ user.first_name }} </b></p><p></p>
-            <p><b>Username: {{ user.username }}</b></p><p></p>
-            <p><b>E-mail: {{ user.email }}</b></p><p></p>
+            <p><b>First name: </b></p><p>{{ user.last_name }}</p>
+            <p><b>Last name: </b></p><p>{{ user.first_name }} </p>
+            <p><b>Username: </b></p><p>{{ user.username }}</p>
+            <p><b>E-mail: </b></p><p>{{ user.email }}</p>
             <img class="logo_cat_site" src="{% static 'adoptions/cat_logo_no_background.png' %}"/>
-          </div>
-          <div class="adopted-cats">
-              {% for cat in cats %}
-              <p>{{ cat.cat_name_text }}</p>
-              {% endfor %}
           </div>
       </div>
       <div class="image-adopt">
         <img class="logo" src="{% static 'adoptions/logo_adopt_cat.png' %}"/>
       </div>
+    </div>
+    <div class="flex-box">
+        <div class="adopted-cats">
+            <p><strong>Adopted cats by you: </strong></p>
+            <div class="cats">
+                {% for cat in cats %}
+                    <li>{{ cat.cat_name_text }}</li>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </body>
 {% include "adoptions/footer.html" %}
