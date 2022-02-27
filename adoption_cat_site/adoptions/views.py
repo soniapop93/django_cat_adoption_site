@@ -62,7 +62,8 @@ def adopt_cat(request, cat_id):
         want_the_cat = request.POST["want_the_cat"]
         if str(want_the_cat) != "1":
             print("Do not want the cat?")
-            return redirect('/cats')
+            return render(request, 'adoptions/not_adopted.html')
+
 
         cat.adopted = True
         cat.adoption_date = timezone.now()
